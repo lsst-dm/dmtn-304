@@ -128,6 +128,17 @@ Then, for each magnitude we plot the histogram and the box plot of the distribut
 
 ```{figure} ./images/diasource_tot.png
 ```
+
+We plot also the histogram and the box plot of the distribution of the differences of magnitudes, i.e. the difference calculated per matching source. 
+
+```{figure} ./images/diasource_tot_diff.png
+```
+
+For reference, the following image explain the mean of a box plot. 
+
+
+```{figure} ./images/boxplot.png
+```
 ## References
 
 ```{bibliography}
