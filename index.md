@@ -52,7 +52,82 @@ The analysis has been performed offline: all the tables have been retrieved once
 
 Topcat has been used to quick validate the retrieved datasets and to filter out the line in double for Visit and CcdVisit tables.
 
+## Comparison
 
+For the analysis there is an interactive notebook allowing table selection and type of plot to generate. For each table we also created a notebook (available in notebook directory) and we generated an interactive html with all the plot (coordinates and magnitudes) and available in the html directory.
+
+We performed a match between the catalogs to make a correct correspondances between the rows and to avoid odd results (i.e comparison between sources in different region of the sky), for this we use astropy module when the number of the row in the retrieved table was the same (in this case it is as we reordered the tables to have match between the row). When the number of row in tables was not the same, we used Topcat stilt functions (as implemented in `pystitls`. We used stilts because it allows the "symmetric match" i.e. it allows only one match per source: with astropy this is not possible and you can have multi-match than could lead to wrong results.
+
+But also with these conditions, in the case of the ForcedSource table the match can be very difficult if not impossible.
+
+To better understand this point see next figures.
+
+The following figure shows the data retrieved for three table:
+
+1. Object in (radius=0.5deg , number of object=395952)
+2. Source in (radius=0.1deg , number of object=561385)
+3. ForcedSource in (radius=0.05deg , number of object=1643290)
+
+```{figure} ./images/radius.png
+Data retrieved for three table:
+
+1. Object in (radius=0.5deg , number of object=395952)
+2. Source in (radius=0.1deg , number of object=561385)
+3. ForcedSource in (radius=0.05deg , number of object=1643290)
+
+```
+
+In `ForcedSource` we have 4 times more entries than Object table in a region 100 times smaller.
+
+Taking a look to the density of source, we see how it could be complicated for a matching algorithm to find the good match. The next figures show the number of sources per "pixel" in the different tables. The pixel size is:
+
+1. Object table: 12x12 arcsec (we cannot generate smaller pixel)
+2. Source table: 7.2x7.2 arcsec
+3. ForcedSource table: 7.2x7.2 arcsec
+
+```{figure} ./images/object_pixel.png
+
+Source density in Object table (in 12x12 arcsec "pixel"). 
+```
+
+```{figure} ./images/source_pixel.png
+
+Source density in Source table (in 7.2x7.2 arcsec "pixel"). 
+```
+
+```{figure} ./images/forced_source_pixel.png
+
+Source density in ForcedSource table (in 7.2x7.2 arcsec "pixel"). 
+```
+
+You can see the number of sources per pixel in the right scale: ForcedSource have an incredible number of source per pixel, in some case more than 3k: it's clear that a matching algorithm using a separation of 1arcsec as parameter to match two points, in this case, it cannot be 100% reliable. In our case, if we exclude ForcedSource table, the matching algorithm worked as we expect.
+
+### Sources positions analysis
+
+To analyse how position in the sky of the object match we compared ra,dec and we analysed also the sky separation (i.e. the great-circle distance) estimated using astropy as
+
+```
+
+c1 = SkyCoord(df[ra_1]*u.deg, df[decl_1]*u.deg, frame='icrs')
+c2 = SkyCoord(df[ra_2]*u.deg, df[decl_2]*u.deg, frame='icrs') 
+sep=c1.separation(c2).degree
+```
+
+An exemple of the distribution of the sky separation is visible in the next figure.
+
+```{figure} ./images/object_cord_diff.png
+```
+
+### Fluxes (magnitudes) analysis
+
+For the fluxes comparison we converted nJy to magnitude AB.
+
+For each table we select fluxes columns and we convert them to AB magnitude using te UDF function scisql_nanojanskyToAbMagintegrated in Qserv.
+
+Then, for each magnitude we plot the histogram and the box plot of the distribution for each catalogs, as shown in the next figure.
+
+```{figure} ./images/diasource_tot.png
+```
 ## References
 
 ```{bibliography}
