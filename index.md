@@ -207,6 +207,46 @@ As mentioned, the distributions are almost indistinguishable, and this is also c
 
 ```{figure} ./images/object_u_diff.png
 ```
+The charts above (and for all other photometric bands) could be generated via [interactive notebook](https://gitlab.in2p3.fr/gabriele.mainetti/dp02_analysis/-/blob/main/notebooks/interactive_notebook.ipynb?ref_type=heads) or explored via [interactive HTML](https://gitlab.in2p3.fr/gabriele.mainetti/dp02_analysis/-/blob/main/html/Object_match.html?ref_type=heads). 
+
+Also regarding magnitude, we can conclude that the object table produced at FrDF is equivalent to the one produced at IDF  (with the caveat about the difference in the number of sources; see above).
+
+
+### Source Table
+The Source table contains astrometric and photometric measurements for sources detected in the individual PVIs (143 columns).
+
+For the source table we used a query with a small radius (0.01 deg) to avoid problem in catalogs matching.
+In this case the number of sources available in the two catalogs is the same (561385).
+
+
+#### Coordinates
+
+In this case there are no evident holes or discrepancies in the plotted positions, see the above figure where in red you have the source from IDF and in blue the one from FrDF.
+
+```{figure} ./images/topcat_sources.png
+```
+
+And also the further analysis show that there are no differences at all between Source's position derived a FrDF and derived at IDF.
+
+```{figure} ./images/source_diff.png
+```
+
+#### Magnitudes
+
+For the magnitudes, we analyzed data derived from 13 flux measurements: 9 magnitudes estimated at different apertures (converted from ap\<aperture\>Flux, which is the flux within a \<aperture\>-pixel aperture), and 4 other magnitudes:
+
+- **skymag** from **skyFlux**: background flux in annulus around the source
+- **psfmag** from **psfFlux**: flux derived from linear least-squares fit of PSF model forced on the calexp
+- **gaussianmag** from **GaussianFlux**: flux from Gaussian Flux algorithm
+- **calibmag** from **calibFlux**: flux within a 12.0-pixel aperture
+
+Also, for the magnitudes, the results are almost the same, confirming that FrDF processing is able to reproduce the data produced at IDF.
+
+```{figure} ./images/source_12px.png
+```
+
+```{figure} ./images/source_12px_diff.png
+```
 
 ## References
 
