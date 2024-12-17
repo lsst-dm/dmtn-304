@@ -139,6 +139,37 @@ For reference, the following image explain the mean of a box plot.
 
 ```{figure} ./images/boxplot.png
 ```
+
+## Results
+
+The results show a very good compatibility between the catalog produced at FrDF and the one produced at IDF. The positions in the sky are almost the same, with very few differences generally limited to a small number of objects; for example, in the Object table, 80% of the 395,000 sources have a separation of less than 0.015 arcseconds and 90% under 0.06 arcseconds. For some tables, there is no difference at all.
+
+The results for magnitudes are also compatible, with very small differences. For each table, we report the main results in the next section.
+
+You can also check all the results for each table in the appropriate notebook linked in each table's section.
+
+Overall, the coordinates and magnitudes show a very good fit between the catalogs. However, we found some problems, listed here:
+
+1. **ForcedSourceOnDiaObject** produced at **FrDF** has no fluxes: all the flux columns are set to NaN, probably linked to the JIRA ticket **DM-35338**.
+2. As mentioned, **Visit** and **CcdVisit** have been produced twice; we have to define a correct procedure in case of reprocessing to avoid this specific case.
+3. The **Object** table at **FrDF** shows holes around very bright sources. It's not clear why; it could be linked to changes in how the pipelines process data. To be investigated.
+4. **ForcedSource** magnitudes show a larger distribution of differences, but, as mentioned above, it could be linked to a selection effect during the catalog matching.
+
+###  Object Table
+
+The Object table contains astrometric and photometric measurements for objects detected in coadded images (990 columns).
+
+We use a query to retrieve all the objects in the region defined by a circle of 0.5 degrees radius around the center point with coordinates (60.0, -30.0) degrees.
+
+But the number of lines retrieved from both catalogs is not the same: 395,952 for FrDF and 396,373 for IDF. This means that the pipelines produced two different catalogs. Looking at the source distribution, we can see that in the FrDF table there are a few holes around bright sources.
+
+The following figures show the sky maps for the sources produced at FrDF (in red) and at IDF (in blue).
+
+```{figure}./images/topcat_frdf.png
+```
+
+```{figure} ./images/topcat_idf.png
+```
 ## References
 
 ```{bibliography}
