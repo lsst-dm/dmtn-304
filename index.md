@@ -175,6 +175,39 @@ We note some large holes in the FrDF data, and if we look at the simulated image
 
 ```{figure} ./images/hips_holes.png
 ```
+
+Is this due to the different version of the pipeline used?
+The analysis is available as notebook (in notebook directory) and as [exported html](https://gitlab.in2p3.fr/gabriele.mainetti/dp02_analysis/-/blob/main/html/Object_match.html?ref_type=heads).
+
+#### Coordinates
+
+After the matching, we obtained two catalogs having the same number of lines (395,865); we lost only a few FrDF sources and 508 IDF sources.
+
+The results show a very good fit in positions; almost all the sources have less than 0.2 arcseconds of separation (see next figure):
+
+```{figure} ./images/object_cord_diff.png
+```
+
+We can conclude, with respect to the coordinates, that the processing at FrDF and IDF is equivalent in this case, but we have to find the discrepancy in the number of sources generated.
+
+####  Magnitude
+
+We analyzed the magnitudes in all six bands available in the table. The magnitudes were extracted from the flux called `<band>cModelFlux`, which is described as: "Flux from the final cmodel fit, forced on the `<band>`-band."
+
+For each magnitude, we plotted the distribution for each catalog and the differences between magnitudes for each corresponding source.
+
+The distributions of magnitude in all the bands are almost the same, with only a few outliers, and this is confirmed by the difference distribution.
+
+An example is shown in the following figure, illustrating the distribution of magnitude for the u band (note: both FrDF and IDF are plotted, but the distributions are almost the same. Please use the interactive notebook or interactive HTML to check it):
+
+```{figure} ./images/object_u.png
+```
+
+As mentioned, the distributions are almost indistinguishable, and this is also confirmed by the distribution of the magnitude difference—for example, for the u band, as shown in the next image:
+
+```{figure} ./images/object_u_diff.png
+```
+
 ## References
 
 ```{bibliography}
