@@ -165,10 +165,15 @@ But the number of lines retrieved from both catalogs is not the same: 395,952 fo
 
 The following figures show the sky maps for the sources produced at FrDF (in red) and at IDF (in blue).
 
-```{figure}./images/topcat_frdf.png
+```{figure} ./images/topcat_frdf.png
 ```
 
 ```{figure} ./images/topcat_idf.png
+```
+
+We note some large holes in the FrDF data, and if we look at the simulated images, we see extended and bright sources corresponding to the holes described above. See, for example, the following figures.
+
+```{figure} ./images/hips_holes.png
 ```
 ## References
 
