@@ -248,6 +248,132 @@ Also, for the magnitudes, the results are almost the same, confirming that FrDF 
 ```{figure} ./images/source_12px_diff.png
 ```
 
+### ForcedSource Table
+
+The ForcedSource table contains forced photometry on the individual PVIs at the locations of all detected objects (38 columns). 
+In this case, the number of lines in the catalogs is not the same: the FrDF ForcedSource table contains 1,643,290 lines, while the IDF ForcedSource table contains 1,642,866 lines.
+
+
+#### Coordinates
+
+For this table there is no clear evidence of hole in the sky:
+
+```{figure} ./images/topcat_source_frdf.png
+```
+```{figure} ./images/topcat_source_idf.png
+```
+
+We proceeded to match the catalogs to obtain two identical catalogs in terms of the number of lines. All the IDF ForcedSources have been matched, and the distribution of the separations shows a really good match in this case as well.
+
+```{figure} ./images/forced_source_diff.png
+```
+
+
+#### Magnitudes
+
+For the magnitudes, we analysed the two bands available in the table. The magnitudes have been extracted from the following columns:
+
+- **psfFlux**: Flux derived from linear least-squares fit of PSF model forced on the calexp
+- **psfFluxDiff**: Flux derived from linear least-squares fit of PSF model forced on the image difference
+
+For each magnitude, we plotted the distribution for each catalogue and the differences between magnitudes for each corresponding source.
+
+In this case, the distribution of magnitude shows small differences (also, it is statistically almost identical); the differences are mainly due to the outliers, as shown by the box plot.
+
+```{figure} ./images/forcedsource_psfmag.png
+```
+```{figure} ./images/forcedsource_psfmag_diff.png
+```
+
+```{figure} ./images/forcedsource_psfmagdiff.png
+```
+```{figure} ./images/forcedsource_psfmagdiff_diff.png
+```
+
+These differences must be analysed to understand the reason for such behaviour.
+
+
+
+###  DiaObject Table
+
+DiaObject contains derived summary parameters for DiaSources that are associated by sky location, including lightcurve statistics. The table has 137 columns. The retrieved table contains the same number of lines (91,954).
+
+
+#### Coordinates
+
+For this table, the matching between FrDF and IDF is perfect, as shown in the next image (note: the top plot is a zoomed view of the entire region):
+
+```{figure} ./images/diaobject_sky.png
+```
+
+#### Magnitudes
+
+For the magnitudes, we analysed the flux for each band extracted from the columns `<BAND>PsfFluxMean`, defined as the weighted mean of diaSource PSF flux.
+
+For magnitudes, as for coordinates, the results match perfectly.
+
+```{figure} ./images/diaobject_magz.png
+```
+
+```{figure} ./images/diaobject_magz_diff.png
+```
+
+### DiaSource Table
+
+The DiaSource table contains astrometric and photometric measurements for sources detected in the difference images (66 columns).
+
+Both the IDF and FrDF retrieved tables contain the same number of sources: 356,759.
+
+
+#### Coordinates
+
+Also, for the DiaSource table, there are no problems with the coordinates, as shown in the following image.
+
+```{figure} ./images/diasource_sky.png
+```
+
+####  Magnitudes
+
+In our magnitude analysis, we examined three fluxes available in the table. The magnitudes were extracted from the following columns:
+
+- **apFlux**: Flux within a 12.0-pixel aperture
+- **psFlux**: Flux derived from a linear least-squares fit of the PSF model
+- **totFlux**: Forced PSF flux measured on the direct image
+
+For each magnitude, we plotted the distribution for each catalog and the differences between magnitudes for each corresponding source.
+
+As for the ForcedSource table, there are few differences in the distribution, as shown, for example, for the *tot* magnitude.
+
+```{figure} ./images/diasource_tot.png
+```
+
+```{figure} ./images/diasource_tot_diff.png
+```
+But overall, there is a good fit.
+
+###  ForcedSourceOnDiaObject Table
+
+ForcedSourceOnDiaObject contains forced photometry on the individual PVIs at the locations of all DiaObjects.
+
+With this specific table, we found a major problem: the FrDF table doesn't contain fluxes at all (all the fluxes are set to NaN).
+
+We checked, and the problem occurs during the pipeline processing because the fluxes are set to NaN also in the Parquet file.
+
+We need to investigate it to find the reason for the problem.
+
+###  Visit and CcdVisit Tables
+
+The **Visit** table contains individual visit information, including band, airmass, exposure time, and so on (15 columns).
+
+The **CcdVisit** table contains individual CCD (detector) information, including measured seeing, sky background, and zeropoint (30 columns).
+
+For these tables, there are no fluxes to analyse and, as expected, there is a perfect coincidence between the positions.
+
+```{figure} ./images/ccdvisit_sky.png
+```
+
+
+
 ## References
 
 ```{bibliography}
