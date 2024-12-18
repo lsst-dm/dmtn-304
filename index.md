@@ -29,10 +29,12 @@ In the following image you can see the number of line per table in FrDF and IDF 
 ```{figure} ./images/table_qserv.png
 Number of lines per table in DPO.2 FrDF and IDF catalogs. 
 ```
-
 It is not possible compare the full catalogs, so for the analysis reported here we used a subsample of both the catalogs selected using a spatial query as this: 
 
+```{rst-class} technote-wide-content
 ```
+```sql
+
 SELECT <column1>, <column2>, ...,<columnN> from <table> where scisql_s2PtInCircle(<ra>, <decl>, 60.0, -30.0, 0.5) = 1 limit 5000000
 ```
 
@@ -62,20 +64,23 @@ But also with these conditions, in the case of the ForcedSource table the match 
 
 To better understand this point see next figures.
 
-The following figure shows the data retrieved for three table:
-
-1. Object in (radius=0.5deg , number of object=395952)
-2. Source in (radius=0.1deg , number of object=561385)
-3. ForcedSource in (radius=0.05deg , number of object=1643290)
+The following table and figure shows the data retrieved for three Qserv tables:
 
 ```{figure} ./images/radius.png
-Data retrieved for three table:
+Comparison of the radii used for source extraction in the Object, Source, and ForcedSource tables.
 
-1. Object in (radius=0.5deg , number of object=395952)
-2. Source in (radius=0.1deg , number of object=561385)
-3. ForcedSource in (radius=0.05deg , number of object=1643290)
-
+1. Object table in 0.5deg radius (number of sources=395952)
+2. Source table in 0.1deg radius (number of sources=561385)
+3. ForcedSource table in 0.05deg radius (number of sources=1643290)
 ```
+
+
+```{figure} ./images/table_numb_sources.png
+Number of sources extracted from Object,Source and ForcedSource tables.
+```
+
+
+
 
 In `ForcedSource` we have 4 times more entries than Object table in a region 100 times smaller.
 
@@ -86,27 +91,32 @@ Taking a look to the density of source, we see how it could be complicated for a
 3. ForcedSource table: 7.2x7.2 arcsec
 
 ```{figure} ./images/object_pixel.png
-
+:figclass: technote-wide-content
 Source density in Object table (in 12x12 arcsec "pixel"). 
 ```
 
 ```{figure} ./images/source_pixel.png
+:figclass: technote-wide-content
 
 Source density in Source table (in 7.2x7.2 arcsec "pixel"). 
 ```
 
 ```{figure} ./images/forced_source_pixel.png
+:figclass: technote-wide-content
 
 Source density in ForcedSource table (in 7.2x7.2 arcsec "pixel"). 
 ```
+You can see the number of sources per pixel in the scale on the right. **ForcedSource** has an incredible number of sources per pixel—in some cases, more than three thousand. It's clear that a matching algorithm using a separation of 1 arcsecond as a parameter to match two points cannot be 100% reliable in this case.
 
-You can see the number of sources per pixel in the right scale: ForcedSource have an incredible number of source per pixel, in some case more than 3k: it's clear that a matching algorithm using a separation of 1arcsec as parameter to match two points, in this case, it cannot be 100% reliable. In our case, if we exclude ForcedSource table, the matching algorithm worked as we expect.
+In our case, if we exclude the **ForcedSource** table, the matching algorithm worked as we expected.
+
 
 ### Sources positions analysis
 
-To analyse how position in the sky of the object match we compared ra,dec and we analysed also the sky separation (i.e. the great-circle distance) estimated using astropy as
+To analyze how well the positions of the objects in the sky match, we compared RA and Dec, and we also analyzed the sky separation (i.e., the great-circle distance) estimated using Astropy.
 
-```
+
+```python
 
 c1 = SkyCoord(df[ra_1]*u.deg, df[decl_1]*u.deg, frame='icrs')
 c2 = SkyCoord(df[ra_2]*u.deg, df[decl_2]*u.deg, frame='icrs') 
@@ -116,6 +126,8 @@ sep=c1.separation(c2).degree
 An exemple of the distribution of the sky separation is visible in the next figure.
 
 ```{figure} ./images/object_cord_diff.png
+:figclass: technote-wide-content
+
 ```
 
 ### Fluxes (magnitudes) analysis
@@ -174,6 +186,8 @@ The following figures show the sky maps for the sources produced at FrDF (in red
 We note some large holes in the FrDF data, and if we look at the simulated images, we see extended and bright sources corresponding to the holes described above. See, for example, the following figures.
 
 ```{figure} ./images/hips_holes.png
+```
+```{figure} ./images/Hole.png
 ```
 
 Is this due to the different version of the pipeline used?
