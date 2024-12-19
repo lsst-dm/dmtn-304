@@ -277,7 +277,7 @@ Also, for the magnitudes, the results are almost the same, confirming that FrDF 
 ### ForcedSource Table
 
 The `ForcedSource` table contains forced photometry on the individual PVIs at the locations of all detected objects (38 columns). 
-In this case, the number of lines in the catalogs is not the same: the FrDF `ForcedSource`` table contains 1,643,290 lines, while the IDF `ForcedSource`` table contains 1,642,866 lines.
+In this case, the number of lines in the catalogs is not the same: the FrDF `ForcedSource` table contains 1,643,290 lines, while the IDF `ForcedSource` table contains 1,642,866 lines.
 
 
 #### Coordinates
@@ -289,7 +289,7 @@ For this table there is no clear evidence of hole in the sky:
 ```{figure} ./images/topcat_source_idf.png
 ```
 
-We proceeded to match the catalogs to obtain two identical catalogs in terms of the number of lines. All the IDF `ForcedSources` have been matched, and the distribution of the separations shows a really good match in this case as well.
+We proceeded to match the catalogs to obtain two identical catalogs in terms of the number of lines. All the IDF `ForcedSource` sources have been matched, and the distribution of the separations shows a really good match in this case as well.
 
 ```{figure} ./images/forced_source_diff.png
 ```
@@ -368,7 +368,7 @@ In our magnitude analysis, we examined three fluxes available in the table. The 
 
 For each magnitude, we plotted the distribution for each catalog and the differences between magnitudes for each corresponding source.
 
-As for the ForcedSource table, there are few differences in the distribution, as shown, for example, for the *tot* magnitude.
+As for the `ForcedSource` table, there are few differences in the distribution, as shown, for example, for the `tot` magnitude.
 
 ```{figure} ./images/diasource_tot.png
 ```
