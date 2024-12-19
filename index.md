@@ -66,8 +66,13 @@ To better understand this point see next figures.
 
 The following table and figure shows the data retrieved for three Qserv tables:
 
+```{figure} ./images/table_numb_sources.png
+Number of sources extracted from Object,Source and ForcedSource tables.
+```
+
+
 ```{figure} ./images/radius.png
-Comparison of the radii used for source extraction in the Object, Source, and ForcedSource tables.
+Comparison of the radii used for source extraction in the Object (green), Source (light pink), and ForcedSource (dark magenta) tables.
 
 1. Object table in 0.5deg radius (number of sources=395952)
 2. Source table in 0.1deg radius (number of sources=561385)
@@ -75,36 +80,27 @@ Comparison of the radii used for source extraction in the Object, Source, and Fo
 ```
 
 
-```{figure} ./images/table_numb_sources.png
-Number of sources extracted from Object,Source and ForcedSource tables.
-```
-
-
 
 
 In `ForcedSource` we have 4 times more entries than Object table in a region 100 times smaller.
 
-Taking a look to the density of source, we see how it could be complicated for a matching algorithm to find the good match. The next figures show the number of sources per "pixel" in the different tables. The pixel size is:
+Taking a look to the density of source, we see how it could be complicated for a matching algorithm to find the good match. The next figures show the number of sources per "pixel" in the different tables. The pixel size is 7.2x7.2 arcsec.
 
-1. Object table: 12x12 arcsec (we cannot generate smaller pixel)
-2. Source table: 7.2x7.2 arcsec
-3. ForcedSource table: 7.2x7.2 arcsec
 
 ```{figure} ./images/object_pixel.png
-:figclass: technote-wide-content
-Source density in Object table (in 12x12 arcsec "pixel"). 
+
+Source density in the Object table (in a 7.2 × 7.2 arcsecond 'pixel').
 ```
 
 ```{figure} ./images/source_pixel.png
-:figclass: technote-wide-content
 
-Source density in Source table (in 7.2x7.2 arcsec "pixel"). 
+Source density in the Source table (in a 7.2 × 7.2 arcsecond 'pixel').
+
 ```
 
 ```{figure} ./images/forced_source_pixel.png
-:figclass: technote-wide-content
 
-Source density in ForcedSource table (in 7.2x7.2 arcsec "pixel"). 
+Source density in the ForcedSource table (in a 7.2 × 7.2 arcsecond 'pixel').
 ```
 You can see the number of sources per pixel in the scale on the right. **ForcedSource** has an incredible number of sources per pixel—in some cases, more than three thousand. It's clear that a matching algorithm using a separation of 1 arcsecond as a parameter to match two points cannot be 100% reliable in this case.
 
@@ -126,7 +122,6 @@ sep=c1.separation(c2).degree
 An exemple of the distribution of the sky separation is visible in the next figure.
 
 ```{figure} ./images/object_cord_diff.png
-:figclass: technote-wide-content
 
 ```
 
@@ -200,6 +195,8 @@ After the matching, we obtained two catalogs having the same number of lines (39
 The results show a very good fit in positions; almost all the sources have less than 0.2 arcseconds of separation (see next figure):
 
 ```{figure} ./images/object_cord_diff.png
+Distribution of sky position differences for the Object table. The top figure shows a zoom on the positions of extracted sources.
+
 ```
 
 We can conclude, with respect to the coordinates, that the processing at FrDF and IDF is equivalent in this case, but we have to find the discrepancy in the number of sources generated.
@@ -243,6 +240,8 @@ In this case there are no evident holes or discrepancies in the plotted position
 And also the further analysis show that there are no differences at all between Source's position derived a FrDF and derived at IDF.
 
 ```{figure} ./images/source_diff.png
+
+Distribution of sky position differences for the Source table. The top figure shows a zoom on the positions of extracted sources, showing no differences.
 ```
 
 #### Magnitudes
