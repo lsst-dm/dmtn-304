@@ -29,3 +29,18 @@ orcid = "https://orcid.org/0000-0001-7203-2552"
 name = "CNRS"
 internal_id = "Lyon-CC-IN2P3"
 address = "CC-IN2P3, 21 avenue Pierre de Coubertin, CS70202, F-69627 Villeurbanne cedex, France"
+[[technote.authors]]
+name = {given = "Quentin", family = "Le Boulc'h"}
+internal_id = "leboulchq"
+[[technote.authors.affiliations]]
+name = "CNRS"
+internal_id = "Lyon-CC-IN2P3"
+address = "CC-IN2P3, 21 avenue Pierre de Coubertin, CS70202, F-69627 Villeurbanne cedex, France"
+[[technote.authors]]
+name = {given = "Dominique", family = "Boutigny"}
+internal_id = "boutignyd"
+orcid = "https://orcid.org/0000-0003-4887-2150"
+[[technote.authors.affiliations]]
+name = "LAPP"
+internal_id = "LAPP"
+address = "Université Grenoble-Alpes, Université Savoie Mont Blanc, CNRS/IN2P3,  Laboratoire d'Annecy-le-Vieux de Physique des Particules, 9 Chemin de Bellevue -- BP 110, F-74940 Annecy-le-Vieux Cedex, France"
